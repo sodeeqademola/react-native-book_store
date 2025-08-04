@@ -6,6 +6,7 @@ import morgan from "morgan";
 import Connection from "./connection";
 import userRouter from "./routes/userRoutes";
 import bookRouter from "./routes/bookRoutes";
+import job from "./cron";
 
 const app: Application = express();
 
@@ -20,6 +21,9 @@ dotenv.config();
 
 // connect to database
 Connection();
+
+// cron job
+job.start();
 
 // routers
 app.use("/api", userRouter);
